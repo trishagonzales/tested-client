@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useTabs } from '../../../hooks/useTabs';
 import { Product } from '../../../types/Product.types';
 
-import ReviewItem from '../ReviewItem';
+import ReviewItem from './ReviewItem';
 import { device } from '../../../theme';
 
 export interface ProductDetailsProps {

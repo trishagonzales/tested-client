@@ -1,13 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { base64ToUrl } from '../../utils/files.util';
-import { ReviewType } from '../../types/Product.types';
-import avatarPlaceholder from '../../assets/avatar-placeholder.png';
+import { useGlobal } from '../../../hooks/useGlobal';
+import { base64ToUrl } from '../../../utils/files.util';
+import { ReviewType } from '../../../types/Product.types';
+import avatarPlaceholder from '../../../assets/avatar-placeholder.png';
 
-import { Row } from '../common/Layout';
-import StarRating from './common/StarRating';
-import { useGlobal } from '../../hooks/useGlobal';
+import { Row } from '../../common/Layout';
+import StarRating from '../common/StarRating';
 
 export interface ReviewItemProps {
   review: ReviewType;
