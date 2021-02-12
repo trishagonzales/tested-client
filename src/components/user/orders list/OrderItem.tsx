@@ -79,9 +79,6 @@ const Div = styled.div`
 
   .product {
     padding: 0.5em;
-    :hover {
-      background: var(--bg);
-    }
 
     .thumbnail {
       margin-right: 1.2em;
