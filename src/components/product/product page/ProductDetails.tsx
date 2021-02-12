@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTabs } from '../../../hooks/useTabs';
+import { useTabs } from '../../../hooks/common/useTabs';
 import { Product } from '../../../types/Product.types';
 
 import ReviewItem from './ReviewItem';

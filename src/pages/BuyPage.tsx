@@ -1,7 +1,7 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import { useTabs } from '../hooks/useTabs';
+import { useTabs } from '../hooks/common/useTabs';
 import { lazy } from '../utils/dynamicImports.util';
 
 import { Container, Section } from '../components/common/Layout';

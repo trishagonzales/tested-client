@@ -1,9 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useOrder } from '../../../hooks/useOrder';
+import { useOrder } from '../../../hooks/product/useOrder';
 import { useCart } from '../../../hooks/user/useCart';
-import { base64ToUrl } from '../../../utils/files.util';
-import { CartItemType } from '../../../types/User.types';
 
 import { ActionButtons } from './ActionButtons';
 import { LinkButton, Button } from '../../common/Button';

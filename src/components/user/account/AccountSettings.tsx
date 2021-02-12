@@ -1,7 +1,7 @@
 /* eslint-disable import/first */
 import React from 'react';
 import styled from 'styled-components';
-import { useEdit } from '../../../hooks/useEdit';
+import { useEdit } from '../../../hooks/common/useEdit';
 import { useModal } from '../../../hooks/portal/useModal';
 import { lazy } from '../../../utils/dynamicImports.util';
 

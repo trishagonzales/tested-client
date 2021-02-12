@@ -1,8 +1,9 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import { useRouteMatch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
-import { screenSize, device } from '../theme';
-import { BaseProps } from '../types/General.types';
+
+import { screenSize, device } from '../../theme';
+import { BaseProps } from '../../types/General.types';
 
 interface UseTabsOptions {
   initialTab?: string;

@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import moment from 'moment';
-import { useGlobal } from '../../../hooks/useGlobal';
+import { useGlobal } from '../../../hooks/common/useGlobal';
 import { base64ToUrl } from '../../../utils/files.util';
 import { ReviewType } from '../../../types/Product.types';
 import avatarPlaceholder from '../../../assets/avatar-placeholder.png';

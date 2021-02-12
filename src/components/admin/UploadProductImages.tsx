@@ -1,8 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UploadHookReturn } from '../../hooks/useUpload';
-import { Center } from '../common/Layout';
+import { UploadHookReturn } from '../../hooks/common/useUpload';
 import { base64ToUrl } from '../../utils/files.util';
+
+import { Center } from '../common/Layout';
 
 export const UploadProductImages: React.FC<UploadHookReturn> = ({
   files,

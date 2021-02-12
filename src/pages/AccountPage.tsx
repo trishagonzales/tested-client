@@ -1,8 +1,8 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTabs } from '../hooks/useTabs';
-import { device } from '../theme';
+import { useTabs } from '../hooks/common/useTabs';
 import { lazy } from '../utils/dynamicImports.util';
+import { device } from '../theme';
 
 import { PageHeader, PageTitle } from '../components/global/PageHeader';
 import { Container } from '../components/common/Layout';

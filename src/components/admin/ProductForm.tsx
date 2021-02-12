@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { UploadHookReturn } from '../../hooks/useUpload';
+import { UploadHookReturn } from '../../hooks/common/useUpload';
 import { lazy } from '../../utils/dynamicImports.util';
 import { device } from '../../theme';
 

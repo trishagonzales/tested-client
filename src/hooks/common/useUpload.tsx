@@ -1,11 +1,9 @@
-import React from 'react';
-import { useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
-import { displayErrors } from './useApiError';
 import { useToasts } from 'react-toast-notifications';
-import { useHistory } from 'react-router-dom';
-import { useAdmin } from './useAdmin';
+import { displayErrors } from './useApiError';
 
 const UPLOAD_PRODUCT_IMAGES = gql`
   mutation($id: String!, $files: [Upload!]!) {

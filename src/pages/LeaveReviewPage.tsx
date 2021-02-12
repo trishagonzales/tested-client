@@ -3,16 +3,15 @@ import { useRouteMatch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
+import { displayErrors } from '../hooks/common/useApiError';
 import { ReviewType } from '../types/Product.types';
 import { device } from '../theme';
 
 import { PageHeader, PageTitle } from '../components/global/PageHeader';
 import { Button } from '../components/common/Button';
 import { Container, Row } from '../components/common/Layout';
-import { useFormInput } from '../hooks/useFormInput';
+import { useFormInput } from '../hooks/common/useFormInput';
 import { Textarea } from '../components/common/Form';
-import { ReviewData } from '../api/fragments/Product.fragment';
-import { displayErrors } from '../hooks/useApiError';
 
 const CREATE_REVIEW = gql`
   mutation($input: CreateReviewInput!) {

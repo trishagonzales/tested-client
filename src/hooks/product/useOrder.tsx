@@ -1,11 +1,12 @@
 import { useCallback } from 'react';
+import { useHistory } from 'react-router-dom';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
-import { useGlobal } from './useGlobal';
-import { displayErrors } from './useApiError';
-import { OrderData } from '../api/fragments/User.fragment';
-import { OrderType } from '../types/User.types';
-import { useHistory } from 'react-router-dom';
+
+import { useGlobal } from '../common/useGlobal';
+import { displayErrors } from '../common/useApiError';
+import { OrderData } from '../../api/fragments/User.fragment';
+import { OrderType } from '../../types/User.types';
 
 const GET_ORDERS = gql`
   query {

@@ -2,7 +2,7 @@ import { useCallback } from 'react';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import { ProductData } from '../../api/fragments/Product.fragment';
 import { Product } from '../../types/Product.types';
-import { useGlobal } from '../useGlobal';
+import { useGlobal } from '../common/useGlobal';
 
 const GET_ITEMS = gql`
   query {

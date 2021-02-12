@@ -1,10 +1,11 @@
+import { useHistory } from 'react-router-dom';
 import { gql, useMutation } from '@apollo/client';
-import { useUpload } from './useUpload';
+import { useToasts } from 'react-toast-notifications';
+
+import { useUpload } from './common/useUpload';
+import { displayErrors } from './common/useApiError';
 import { ProductData } from '../api/fragments/Product.fragment';
 import { Product } from '../types/Product.types';
-import { useToasts } from 'react-toast-notifications';
-import { displayErrors } from './useApiError';
-import { useHistory } from 'react-router-dom';
 
 const ADD_PRODUCT = gql`
   mutation($input: AddProductInput!) {

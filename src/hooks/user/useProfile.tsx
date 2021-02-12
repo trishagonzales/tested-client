@@ -1,5 +1,5 @@
 import { gql, useMutation } from '@apollo/client';
-import { useUpload } from '../useUpload';
+import { useUpload } from '../common/useUpload';
 
 const EDIT_PROFILE = gql`
   mutation($input: ProfileInput!) {

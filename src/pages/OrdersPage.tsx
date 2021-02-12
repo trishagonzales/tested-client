@@ -1,13 +1,14 @@
-import React, { useEffect } from 'react';
-import { useOrder } from '../hooks/useOrder';
+import React from 'react';
 import styled from 'styled-components';
-import { PageHeader, PageTitle, PageHeaderButtons } from '../components/global/PageHeader';
-import ProductThumbnail from '../components/product/ProductThumbnail';
-import { Row, Container } from '../components/common/Layout';
-import Price from '../components/product/common/Price';
-import { OrderStatus } from '../components/product/order/OrderStatus';
-import { Button, LinkButton } from '../components/common/Button';
+import { useOrder } from '../hooks/product/useOrder';
 import { device } from '../theme';
+
+import { PageHeader, PageTitle, PageHeaderButtons } from '../components/global/PageHeader';
+import { Button, LinkButton } from '../components/common/Button';
+import { Row, Container } from '../components/common/Layout';
+import { OrderStatus } from '../components/user/orders list/OrderStatus';
+import ProductThumbnail from '../components/product/ProductThumbnail';
+import Price from '../components/product/common/Price';
 
 export interface OrdersPageProps {}
 

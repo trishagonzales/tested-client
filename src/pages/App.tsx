@@ -3,11 +3,11 @@ import { GlobalStyle } from './GlobalStyle';
 import { useUser } from '../hooks/user/useUser';
 import { useCart } from '../hooks/user/useCart';
 import { useWishlist } from '../hooks/user/useWishlist';
+import { useOrder } from '../hooks/product/useOrder';
 import { Routes, globalRoutes, userRoutes, adminRoutes, checkoutRoutes } from './Routes';
 
 import { Navbar, NavbarMobile } from '../components/global/Navbar/Navbar';
 import { Footer } from '../components/global/Footer';
-import { useOrder } from '../hooks/useOrder';
 
 export function App() {
   const { user, isAdmin, isAdminAPI, getUserData } = useUser();

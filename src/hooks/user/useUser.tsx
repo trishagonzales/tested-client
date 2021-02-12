@@ -2,8 +2,9 @@ import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
-import { useGlobal } from './../useGlobal';
-import { displayErrors } from './../useApiError';
+
+import { useGlobal } from '../common/useGlobal';
+import { displayErrors } from '../common/useApiError';
 import { UserData } from '../../api/fragments/User.fragment';
 import { LoginInput, SignupInput } from '../../types/General.types';
 import { User } from '../../types/User.types';
