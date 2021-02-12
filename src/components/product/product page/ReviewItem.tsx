@@ -8,17 +8,19 @@ import avatarPlaceholder from '../../../assets/avatar-placeholder.png';
 
 import { Row } from '../../common/Layout';
 import StarRating from '../common/StarRating';
+import { useReview } from '../../../hooks/user/useReview';
 
 export interface ReviewItemProps {
   review: ReviewType;
 }
 
 const ReviewItem: React.FC<ReviewItemProps> = ({
-  review: { author, rating, comment, datePosted },
+  review: { id, author, rating, comment, datePosted },
 }) => {
   const {
     globalState: { user },
   } = useGlobal();
+  const { deleteReview } = useReview();
 
   return (
     <Div>
@@ -29,7 +31,11 @@ const ReviewItem: React.FC<ReviewItemProps> = ({
         <Row className='author-delete' justifyContent='space-between'>
           <p className='author'>{author.username}</p>
           {author.id === user?.id && (
-            <span className='remove-btn hoverable-underline error-color'>DELETE</span>
+            <span
+              className='remove-btn hoverable-underline error-color'
+              onClick={() => deleteReview(id)}>
+              DELETE
+            </span>
           )}
         </Row>
         <StarRating fontSize='9px' rating={rating} />
