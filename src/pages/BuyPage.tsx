@@ -7,9 +7,9 @@ import { lazy } from '../utils/dynamicImports.util';
 import { Container, Section } from '../components/common/Layout';
 import { PageHeader, PageTitle } from '../components/global/PageHeader';
 
-const Cart = lazy(() => import('../components/product/order/Cart'));
-const Checkout = lazy(() => import('../components/product/order/Checkout'));
-const OrderCompleted = lazy(() => import('../components/product/order/OrderCompleted'));
+const Cart = lazy(() => import('../components/product/buy/Cart'));
+const Checkout = lazy(() => import('../components/product/buy/Checkout'));
+const OrderCompleted = lazy(() => import('../components/product/buy/OrderCompleted'));
 
 export interface OrderPageProps {}
 
