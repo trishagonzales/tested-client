@@ -33,7 +33,7 @@ export function useModal(initialOpen: boolean = false) {
     );
   }, []);
 
-  return { Modal, open, close };
+  return { Modal, isOpen, open, close };
 }
 
 const ModalBox = styled.div`
