@@ -26,7 +26,9 @@ const ProductCardAdmin: React.FC<ProductCardAdminProps> = ({ product }) => {
           <i className='fas fa-times'></i>
         </Button>
       </Row>
+
       <ProductCard product={product} />
+
       <Modal>
         <ModalContent center>Are you sure you want to delete this product?</ModalContent>
         <ModalButtons>
