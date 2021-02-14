@@ -4,13 +4,13 @@ import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
 import { displayErrors } from '../hooks/common/useApiError';
+import { useFormInput } from '../hooks/common/useFormInput';
 import { ReviewType } from '../types/Product.types';
 import { device } from '../theme';
 
 import { PageHeader, PageTitle } from '../components/global/PageHeader';
 import { Button } from '../components/common/Button';
 import { Container, Row } from '../components/common/Layout';
-import { useFormInput } from '../hooks/common/useFormInput';
 import { Textarea } from '../components/common/Form';
 
 const CREATE_REVIEW = gql`
@@ -23,7 +23,7 @@ export interface LeaveReviewPageProps {}
 
 const LeaveReviewPage: React.FC<LeaveReviewPageProps> = () => {
   const [rating, setRating] = useState(0);
-  const commentProps = useFormInput();
+  const comment = useFormInput();
 
   const { params } = useRouteMatch<{ id: string }>();
   const { addToast } = useToasts();
@@ -69,7 +69,7 @@ const LeaveReviewPage: React.FC<LeaveReviewPageProps> = () => {
             fullwidth
             minRows={12}
             maxRows={20}
-            {...commentProps}
+            {...comment.props}
           />
 
           <Row className='actions' breakpoint='narrow'>
@@ -80,7 +80,7 @@ const LeaveReviewPage: React.FC<LeaveReviewPageProps> = () => {
                 rating !== 0
                   ? createReview({
                       variables: {
-                        input: { rating, comment: commentProps.value, orderID: params.id },
+                        input: { rating, comment: comment.props.value, orderID: params.id },
                       },
                     })
                   : addToast('Rating required', { appearance: 'error' });
