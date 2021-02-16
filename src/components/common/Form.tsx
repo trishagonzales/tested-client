@@ -13,7 +13,8 @@ export const Label = styled.label<{ fontSize?: string }>`
 `;
 
 export const Input = styled.input<FormProps>`
-  width: ${p => (p.fullwidth ? '100%' : '400px')};
+  width: 100%;
+  max-width: ${p => !p.fullwidth && '400px'};
   padding: 0.7em;
   border: 2px solid #ccc;
   border-radius: var(--borderRadius);
