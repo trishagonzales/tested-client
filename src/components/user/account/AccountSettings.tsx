@@ -1,50 +1,56 @@
-/* eslint-disable import/first */
 import React from 'react';
 import styled from 'styled-components';
-import { useEdit } from '../../../hooks/common/useEdit';
-import { useModal } from '../../../hooks/portal/useModal';
-import { lazy } from '../../../utils/dynamicImports.util';
+import { useGlobal } from '../../../hooks/common/useGlobal';
+import { useAccountSettings } from '../../../hooks/user/useAccountSettings';
 
 import { Row } from '../../common/Layout';
-import { Button } from '../../common/Button';
-
-const Formik = lazy(() => import('formik'), 'Formik');
-const Form = lazy(() => import('formik'), 'Form');
-const FormikField = lazy(() => import('../../common/FormikField'), 'FormikField');
+import FormWithEditMode from './FormWithEditMode';
 
 export interface AccountSettingsProps {}
 
 const AccountSettings: React.FC<AccountSettingsProps> = () => {
-  const { EditButton } = useEdit();
-  const { Modal, open } = useModal();
+  const {
+    globalState: { user },
+  } = useGlobal();
+  const { updateUsername, updateEmail, updatePassword } = useAccountSettings();
 
   return (
     <Div>
-      <Formik initialValues={{ email: '', password: '' }} onSubmit={() => {}}>
-        {() => (
-          <Form>
-            <Row className='heading' justifyContent='space-between'>
-              <h1>SETTINGS</h1>
-              <EditButton />
-            </Row>
+      <Row className='heading' justifyContent='space-between'>
+        <h1>SETTINGS</h1>
+      </Row>
 
-            <FormikField name='username' label='username' />
-            <FormikField name='email' label='email' />
-            <FormikField name='password' label='password' />
-
-            <Button onClick={open}>Open modal</Button>
-            <Modal>Yey</Modal>
-
-            <Row className='actions'>
-              <Button primary>SAVE CHANGES</Button>
-            </Row>
-          </Form>
-        )}
-      </Formik>
+      <FormWithEditMode
+        className='form-control'
+        label='Username'
+        data={user?.username}
+        callback={updateUsername}
+        withPasswordValidation
+      />
+      <FormWithEditMode
+        className='form-control'
+        label='Email'
+        data={user?.email}
+        callback={updateEmail}
+        withPasswordValidation
+      />
+      <FormWithEditMode
+        className='form-control'
+        label='Password'
+        callback={updatePassword}
+        withPasswordValidation
+      />
     </Div>
   );
 };
 
 export default AccountSettings;
 
-const Div = styled.div``;
+const Div = styled.div`
+  .form-control {
+    margin-bottom: 1.5em;
+  }
+  label {
+    font-weight: 300;
+  }
+`;
