@@ -35,7 +35,10 @@ export const VerticalCenter = styled.div`
 export interface RowProps {
   breakpoint?: DeviceSize;
   justifyContent?: JustifyContent;
+  alignItems?: AlignItems;
 }
+
+export type AlignItems = 'center' | 'flex-start' | 'flex-end' | 'stretch' | 'baseline' | 'inherit';
 
 export type JustifyContent =
   | 'center'
@@ -52,7 +55,7 @@ export const Row = styled.div<RowProps>`
   width: 100%;
   display: flex;
   justify-content: ${p => p.justifyContent};
-  align-items: center;
+  align-items: ${p => p.alignItems ?? 'center'};
 
   @media ${p => (p.breakpoint ? device[p.breakpoint] : null)} {
     flex-direction: ${p => p.breakpoint && 'column'};
