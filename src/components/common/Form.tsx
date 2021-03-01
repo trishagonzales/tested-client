@@ -6,9 +6,9 @@ export interface FormProps {
   fullwidth?: boolean;
 }
 
-export const Label = styled.label<{ fontSize?: string }>`
-  font-size: ${p => (p.fontSize ? p.fontSize : '14px')};
-  font-weight: bold;
+export const Label = styled.label<{ fontSize?: string; fontWeight?: string }>`
+  font-size: ${p => p.fontSize ?? '14px'};
+  font-weight: ${p => p.fontWeight ?? 'bold'};
   color: var(--fg);
 `;
 
