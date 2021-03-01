@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Row, Column, Container, Center } from '../common/Layout';
+import { Row, Column, Container } from '../common/Layout';
 import { Brand } from './Navbar/Brand';
 import { Input } from '../common/Form';
 import { Button } from '../common/Button';
@@ -15,7 +15,7 @@ export const Footer: React.FC<FooterProps> = () => {
       <div className='top'>
         <Container>
           <Row alignItems='flex-start' breakpoint='narrow'>
-            <Column className='column'>
+            <Column className='column' flex='.7'>
               <Brand />
               <Row className='social-media'>
                 <i className='hoverable fab fa-facebook-f' />
@@ -25,17 +25,23 @@ export const Footer: React.FC<FooterProps> = () => {
               </Row>
             </Column>
 
-            <Column className='column links'>
-              <label htmlFor=''>Links</label>
-              <Row alignItems='flex-start'>
+            <Column className='column links' flex='1.3'>
+              <Row className='row' alignItems='flex-start' justifyContent='space-evenly'>
                 <ul>
+                  <label>Account</label>
                   <li>Products</li>
-                  <li>Categories</li>
-                  <li>Track order</li>
+                  <li>Cart</li>
+                  <li>Wishlist</li>
+                  <li>Profile</li>
+                  <li>Settings</li>
                 </ul>
                 <ul>
-                  <li>Account</li>
-                  <li>News</li>
+                  <label>Company</label>
+                  <li>About</li>
+                  <li>Careers</li>
+                  <li>Blog</li>
+                  <li>Privacy Policy</li>
+                  <li>Terms & Conditions</li>
                 </ul>
               </Row>
             </Column>
@@ -52,52 +58,61 @@ export const Footer: React.FC<FooterProps> = () => {
       </div>
 
       <div className='bottom'>
-        <Center>&#169; Tested 2021. All rights reserved.</Center>
+        <Container className='container'>
+          <Row justifyContent='space-between' breakpoint='narrow'>
+            <span className='copyright'>&#169; Tested 2021. All rights reserved.</span>
+            <span>
+              <span className='hoverable-text'>Privacy Policy</span>
+              <span className='divider'>|</span>
+              <span className='hoverable-text'>Terms & Conditions</span>
+              <span className='divider'>|</span>
+              <span className='hoverable-text'>Sitemap</span>
+            </span>
+          </Row>
+        </Container>
       </div>
     </FooterStyle>
   );
 };
 
 const FooterStyle = styled.footer`
-  height: auto;
-  background: var(--main);
   color: var(--grey);
   font-size: 14px;
 
   .top {
-    padding: 2em 1em;
-    background: #232230;
+    min-height: 200px;
+    padding: 2.2em 1em;
+    background: #1d172e;
     label {
-      margin-bottom: 0.8em;
+      margin-bottom: 1em;
       display: block;
     }
 
     .social-media {
-      margin-top: 0.4em;
+      margin-top: 1em;
       i {
         width: 35px;
         height: 35px;
         margin-right: 0.3em;
         padding: 0.5em;
-        text-align: center;
         background: rgba(0, 0, 0, 0.3);
+        border-radius: 5px;
+        text-align: center;
         font-size: 16px;
         color: var(--darkgrey);
         transition: background 100ms;
         :hover {
-          background: #444;
           color: white;
         }
       }
     }
 
     .links {
-      ul:nth-of-type(1) {
-        margin-right: 1.5em;
-      }
       li {
         margin-bottom: 0.5em;
-        color: var(--darkgrey);
+        color: var(--grey);
+        font-size: 12px;
+        opacity: 0.6;
         :hover {
           color: var(--grey);
           text-decoration: underline;
@@ -122,17 +137,45 @@ const FooterStyle = styled.footer`
   }
 
   .bottom {
-    height: 45px;
-    background: #181721;
+    height: 40px;
+    background: #151121;
     color: var(--grey);
+    font-size: 12px;
+    .container {
+      height: 100%;
+      display: flex;
+      align-items: center;
+      .divider {
+        margin: 0 1em;
+      }
+    }
   }
 
   @media ${device.narrow} {
     .top {
       padding: 2em 6%;
+      .column {
+        width: 100%;
+      }
       .column:nth-of-type(2) {
-        margin-top: 1.5em;
-        margin-bottom: 1.5em;
+        margin: 2em 0;
+      }
+      .links {
+        ul {
+          width: 50%;
+        }
+      }
+      .newsletter {
+        button {
+          max-width: 400px;
+        }
+      }
+    }
+    .bottom {
+      height: 60px;
+      padding: 0.5em;
+      .copyright {
+        margin-bottom: 0.5em;
       }
     }
   }
