@@ -60,9 +60,6 @@ export const Card = styled.div`
   cursor: pointer;
   :hover {
     border-color: var(--main2);
-    .wishlist-btn {
-      display: unset;
-    }
   }
 
   .thumbnail {
@@ -72,7 +69,6 @@ export const Card = styled.div`
     object-position: center;
   }
   .wishlist-btn {
-    display: none;
     position: absolute;
     top: 9px;
     right: 9px;
