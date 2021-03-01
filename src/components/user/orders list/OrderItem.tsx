@@ -18,9 +18,7 @@ export interface OrderItemProps extends BaseProps {
 const OrderItem: React.FC<OrderItemProps> = ({ className, order, removeOrder }) => {
   return (
     <Div className={className}>
-      <div
-        className='remove-btn hoverable-underline error-color'
-        onClick={() => removeOrder(order.id)}>
+      <div className='remove-btn hoverable-text error-color' onClick={() => removeOrder(order.id)}>
         DELETE
       </div>
 

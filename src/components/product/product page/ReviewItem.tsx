@@ -9,8 +9,9 @@ import avatarPlaceholder from '../../../assets/avatar-placeholder.png';
 import { Row } from '../../common/Layout';
 import StarRating from '../common/StarRating';
 import { useReview } from '../../../hooks/user/useReview';
+import { BaseProps } from '../../../types/General.types';
 
-export interface ReviewItemProps {
+export interface ReviewItemProps extends BaseProps {
   review: ReviewType;
 }
 
@@ -32,7 +33,7 @@ const ReviewItem: React.FC<ReviewItemProps> = ({
           <p className='author'>{author.username}</p>
           {author.id === user?.id && (
             <span
-              className='remove-btn hoverable-underline error-color'
+              className='remove-btn hoverable-text error-color'
               onClick={() => deleteReview(id)}>
               DELETE
             </span>
@@ -59,6 +60,7 @@ export const Div = styled.div`
   background: white;
   border-radius: 5px;
   font-size: 14px;
+  box-shadow: 0 3px 12px #d7d7d7;
 
   .avatar {
     flex: 0 0 40px;

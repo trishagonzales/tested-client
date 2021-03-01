@@ -63,7 +63,7 @@ export const GlobalStyle = createGlobalStyle`
       filter: brightness(97%);
     }
   }
-  .hoverable-underline {
+  .hoverable-text {
     cursor: pointer;
     :hover {
       text-decoration: underline;
