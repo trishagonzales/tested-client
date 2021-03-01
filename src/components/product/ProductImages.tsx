@@ -93,7 +93,7 @@ export const Div = styled.div`
       border: 1px solid #777;
     }
     .item:not(.active) {
-      opacity: 0.5;
+      opacity: 0.7;
     }
 
     .previous-btn,
@@ -102,12 +102,13 @@ export const Div = styled.div`
       display: flex;
       justify-content: center;
       align-items: center;
-      background: var(--bg);
+      background: var(--lightgrey);
       font-size: 16px;
       color: var(--main);
       cursor: pointer;
     }
     .disabled {
+      background: var(--bg);
       color: var(--grey);
     }
   }
