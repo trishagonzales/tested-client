@@ -31,7 +31,7 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = () => {
               <Link onClick={close} to='/orders'>
                 Track Orders
               </Link>
-              <Link onClick={close} to='/account'>
+              <Link onClick={close} to='/profile'>
                 Account
               </Link>
               {isAdmin && (

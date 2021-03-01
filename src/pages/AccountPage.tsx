@@ -14,6 +14,7 @@ export interface AccountPageProps {}
 
 const AccountPage: React.FC<AccountPageProps> = () => {
   const { TabContainer, TabHeader, Tab, TabBody, TabContent } = useTabs({
+    isCurrentPathTheTab: true,
     initialTab: 'profile',
     isVertical: true,
   });
@@ -32,7 +33,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
                 <span className='text'>Profile</span>
                 <i className='fas fa-user-circle'></i>
               </Tab>
-              <Tab className='tab' name='settings'>
+              <Tab className='tab' name='account-settings'>
                 <span className='text'>Settings</span>
                 <i className='fas fa-cog'></i>
               </Tab>
@@ -42,7 +43,7 @@ const AccountPage: React.FC<AccountPageProps> = () => {
               <TabContent name='profile'>
                 <Profile />
               </TabContent>
-              <TabContent name='settings'>
+              <TabContent name='account-settings'>
                 <AccountSettings />
               </TabContent>
             </TabBody>
@@ -56,6 +57,10 @@ const AccountPage: React.FC<AccountPageProps> = () => {
 export default AccountPage;
 
 const Div = styled.div`
+  .tab-container {
+    min-height: 100vh;
+  }
+
   .tab-header {
     padding-top: 30px;
     background: var(--bg);
@@ -75,11 +80,11 @@ const Div = styled.div`
   }
 
   .tab-body {
-    max-width: 500px;
+    max-width: 600px;
     padding: 1.5em;
     padding-left: 7%;
     .heading {
-      margin-bottom: 20px;
+      margin-bottom: 1.5em;
     }
     .actions {
       margin-top: 30px;

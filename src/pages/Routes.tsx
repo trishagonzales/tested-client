@@ -5,6 +5,7 @@ import OrdersPage from './OrdersPage';
 
 const HomePage = lazy(() => import('./HomePage'));
 const LoginSignupPage = lazy(() => import('./LoginSignupPage'));
+const ProductListPage = lazy(() => import('./ProductListPage'));
 const ProductPage = lazy(() => import('./ProductPage'));
 const AccountPage = lazy(() => import('./AccountPage'));
 const BuyPage = lazy(() => import('./BuyPage'));
@@ -25,6 +26,7 @@ export const Routes: React.FC<RoutesProps> = ({ visible, routes }) => {
 
 export const globalRoutes = [
   { path: '/product/:id', component: ProductPage },
+  { path: '/products', component: ProductListPage },
   { path: '/login', component: LoginSignupPage },
   { path: '/signup', component: LoginSignupPage },
   { exact: true, path: '/', component: HomePage },
@@ -36,7 +38,8 @@ export const userRoutes = [
   { path: '/order-completed', component: BuyPage },
   { path: '/cart', component: BuyPage },
   { path: '/wishlists', component: WishlistPage },
-  { path: '/account', component: AccountPage },
+  { path: '/profile', component: AccountPage },
+  { path: '/account-settings', component: AccountPage },
 ];
 
 export const adminRoutes = [
@@ -47,4 +50,3 @@ export const adminRoutes = [
 ];
 
 export const checkoutRoutes = [{ path: '/checkout', component: BuyPage }];
-// export const orderCompleteRoutes = [{ path: '/order-completed', component: BuyPage }];
