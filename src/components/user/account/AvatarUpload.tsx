@@ -7,17 +7,19 @@ import avatarPlaceholder from '../../../assets/avatar-placeholder.png';
 export interface AvatarUploadProps {
   avatarUrl?: string;
   className?: string;
+  inEditMode: boolean;
   [key: string]: any;
 }
 
 export const AvatarUpload: React.FC<AvatarUploadProps> = ({
   avatarUrl,
   className,
+  inEditMode,
   UploadButton,
-  remove,
   file,
+  setFile,
 }) => {
-  const url = file ? URL.createObjectURL(file) : undefined;
+  const url = file && typeof file !== 'string' ? URL.createObjectURL(file) : undefined;
 
   return (
     <Div className={className}>
@@ -29,10 +31,14 @@ export const AvatarUpload: React.FC<AvatarUploadProps> = ({
         }}
         alt='avatar'
       />
-      <UploadButton>
-        <i className='fas fa-upload upload-btn'></i>
-      </UploadButton>
-      <RemoveButton onClick={remove} />
+      {inEditMode && (
+        <>
+          <UploadButton>
+            <i className='fas fa-upload upload-btn'></i>
+          </UploadButton>
+          <RemoveButton onClick={() => setFile(undefined)} />
+        </>
+      )}
     </Div>
   );
 };

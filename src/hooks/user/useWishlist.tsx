@@ -22,9 +22,9 @@ const ADD_ITEM = gql`
   ${ProductData}
 `;
 
-const REMOVE_ITEM = gql`
+const DELETE_ITEM = gql`
   mutation($productID: String!) {
-    removeWishlistItem(productID: $productID) {
+    deleteWishlistItem(productID: $productID) {
       ...ProductData
     }
   }
@@ -53,8 +53,8 @@ export function useWishlist(productID?: string) {
       globalDispatch({ type: 'UPDATE_WISHLIST', wishlist: [...items, item] }),
   });
 
-  const [removeItemAPI] = useMutation<{ removeWishlistItem: Product }>(REMOVE_ITEM, {
-    onCompleted: ({ removeWishlistItem: item }) =>
+  const [deleteItemAPI] = useMutation<{ deleteWishlistItem: Product }>(DELETE_ITEM, {
+    onCompleted: ({ deleteWishlistItem: item }) =>
       globalDispatch({ type: 'UPDATE_WISHLIST', wishlist: items.filter(i => i.id !== item.id) }),
   });
 
@@ -63,7 +63,7 @@ export function useWishlist(productID?: string) {
   });
 
   const addItem = useCallback(() => addItemAPI({ variables: { productID } }), [items]);
-  const removeItem = useCallback(() => removeItemAPI({ variables: { productID } }), [items]);
+  const deleteItem = useCallback(() => deleteItemAPI({ variables: { productID } }), [items]);
   const clear = useCallback(() => clearAPI(), [items]);
 
   const isAdded = useCallback(() => !!items.find(i => i.id === productID), [items]);
@@ -72,7 +72,7 @@ export function useWishlist(productID?: string) {
     items,
     getWishlistItems,
     addItem,
-    removeItem,
+    deleteItem,
     clear,
     isAdded,
   };

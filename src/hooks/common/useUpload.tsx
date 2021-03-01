@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import styled from 'styled-components';
+import _ from 'lodash';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
 import { displayErrors } from './useApiError';
@@ -11,9 +12,21 @@ const UPLOAD_PRODUCT_IMAGES = gql`
   }
 `;
 
+const DELETE_PRODUCT_IMAGES = gql`
+  mutation($id: String!, $filenames: [String!]!) {
+    deleteProductImages(id: $id, filenames: $filenames)
+  }
+`;
+
 const UPLOAD_AVATAR = gql`
   mutation($file: Upload!) {
     uploadAvatar(file: $file)
+  }
+`;
+
+const DELETE_AVATAR = gql`
+  mutation {
+    deleteAvatar
   }
 `;
 
@@ -27,7 +40,6 @@ interface UseUploadOptions {
 }
 
 export function useUpload({ type, initialFile, initialFiles = [] }: UseUploadOptions) {
-  // const {} = useAdmin();
   const [file, setFile] = useState<FileType>(initialFile);
   const [files, setFiles] = useState<FilesType>(initialFiles);
 
@@ -74,11 +86,24 @@ export function useUpload({ type, initialFile, initialFiles = [] }: UseUploadOpt
         setFiles([]);
         setAreFilesChanged(false);
         history.replace('/product/' + data.uploadProductImages);
-        addToast('Saved product', { appearance: 'success' });
+        addToast('Product saved', { appearance: 'success' });
       } else {
         setFile(undefined);
         setIsFileChanged(false);
-        addToast('Saved profile', { appearance: 'success' });
+        history.replace('/profile');
+        addToast('Profile saved', { appearance: 'success' });
+      }
+    },
+    onError: err => {
+      displayErrors(addToast, err);
+    },
+  });
+
+  const [deleteAPI] = useMutation(type === 'product' ? DELETE_PRODUCT_IMAGES : DELETE_AVATAR, {
+    onCompleted: () => {
+      if (type === 'profile') {
+        history.replace('/profile');
+        addToast('Profile saved', { appearance: 'success' });
       }
     },
     onError: err => {
@@ -87,9 +112,14 @@ export function useUpload({ type, initialFile, initialFiles = [] }: UseUploadOpt
   });
 
   const upload = useCallback(
-    (productID?: string) => {
+    (productID?: string, currentProductImages?: string[]) => {
       if (type === 'product') {
-        uploadAPI({ variables: { id: productID, files } });
+        const [newFiles, oldFiles] = _.partition(files, file => typeof file !== 'string');
+        const filesToRemove = _.difference(currentProductImages, oldFiles);
+
+        if (newFiles.length > 0) uploadAPI({ variables: { id: productID, files: newFiles } });
+        if (filesToRemove.length > 0)
+          deleteAPI({ variables: { id: productID, filenames: filesToRemove } });
       } else {
         uploadAPI({ variables: { file } });
       }
@@ -100,15 +130,26 @@ export function useUpload({ type, initialFile, initialFiles = [] }: UseUploadOpt
   const remove = useCallback(
     (index?: number) => {
       if (type === 'profile') {
+        deleteAPI();
         setFile(undefined);
       } else {
         setFiles(files.filter((_, itemIndex) => index !== itemIndex));
       }
     },
-    [files, setFiles]
+    [file, files]
   );
 
-  return { UploadButton, file, files, remove, upload, isFileChanged, areFilesChanged };
+  return {
+    UploadButton,
+    file,
+    files,
+    isFileChanged,
+    areFilesChanged,
+    remove,
+    upload,
+    setFile,
+    setFiles,
+  };
 }
 
 const UploadStyle = styled.div`

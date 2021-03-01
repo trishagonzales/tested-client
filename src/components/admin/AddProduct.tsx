@@ -12,7 +12,9 @@ const Formik = lazy(() => import('formik'), 'Formik');
 export interface AddProductProps {}
 
 const AddProduct: React.FC<AddProductProps> = () => {
-  const { addProps } = useAdmin();
+  const {
+    addProductProps: { addProduct, uploadProps },
+  } = useAdmin();
 
   return (
     <>
@@ -26,8 +28,8 @@ const AddProduct: React.FC<AddProductProps> = () => {
       <Container>
         <Formik
           initialValues={{ name: '', price: '', stock: '', description: '' }}
-          onSubmit={(input: any) => addProps.addProduct({ variables: { input } })}>
-          {() => <ProductForm uploadProps={addProps.uploadProps} />}
+          onSubmit={(input: any) => addProduct({ variables: { input } })}>
+          {() => <ProductForm uploadProps={uploadProps} />}
         </Formik>
       </Container>
     </>

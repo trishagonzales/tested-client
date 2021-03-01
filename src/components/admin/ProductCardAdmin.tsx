@@ -1,29 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Product } from '../../types/Product.types';
-
-import { RemoveButton, LinkButton, Button } from '../common/Button';
-import { Row } from '../common/Layout';
-import ProductCard from '../product/ProductCard';
 import { useAdmin } from '../../hooks/useAdmin';
 import { useModal, ModalButtons, ModalContent } from '../../hooks/portal/useModal';
+import { Product } from '../../types/Product.types';
+
+import { LinkButton, Button } from '../common/Button';
+import { Row } from '../common/Layout';
+import ProductCard from '../product/ProductCard';
 
 export interface ProductCardAdminProps {
   product: Product;
 }
 
 const ProductCardAdmin: React.FC<ProductCardAdminProps> = ({ product }) => {
-  const { removeProduct } = useAdmin();
+  const { deleteProduct } = useAdmin();
   const { Modal, open, close } = useModal();
 
   return (
     <Div>
       <Row className='actions' justifyContent='flex-end'>
         <LinkButton to={'/admin/edit-product/' + product.id} textOnly>
-          <i className='fas fa-edit'></i>
+          <i className='fas fa-edit'></i> <span>EDIT</span>
         </LinkButton>
         <Button className='remove-btn' onClick={open} textOnly>
-          <i className='fas fa-times'></i>
+          <i className='fas fa-times'></i> <span>DELETE</span>
         </Button>
       </Row>
 
@@ -36,7 +36,7 @@ const ProductCardAdmin: React.FC<ProductCardAdminProps> = ({ product }) => {
           <Button
             className='delete-btn'
             onClick={() => {
-              removeProduct({ variables: { id: product.id } });
+              deleteProduct({ variables: { id: product.id } });
               close();
             }}>
             DELETE

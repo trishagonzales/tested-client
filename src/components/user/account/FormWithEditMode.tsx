@@ -66,10 +66,7 @@ const FormWithEditMode: React.FC<FormWithEditModeProps> = ({
         ) : (
           <>
             <span>{data}</span>
-            <Button
-              className='edit-btn'
-              onClick={() => (withPasswordValidation ? open() : setEditMode(true))}
-              textOnly>
+            <Button onClick={() => (withPasswordValidation ? open() : setEditMode(true))} outline>
               EDIT
             </Button>
           </>
@@ -113,9 +110,6 @@ const Div = styled.div`
     button {
       margin-left: 1em;
       font-size: 12px;
-    }
-    .edit-btn {
-      color: navy;
     }
   }
 `;

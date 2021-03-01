@@ -5,26 +5,32 @@ import { base64ToUrl } from '../../utils/files.util';
 
 import { Center } from '../common/Layout';
 
+interface Urls {
+  url: string
+  type: 'base64' | 'blob';
+}
+
 export const UploadProductImages: React.FC<UploadHookReturn> = ({
   files,
   remove,
   UploadButton,
 }) => {
-  const urls =
-    files &&
-    (typeof files[0] === 'string'
-      ? files.map(f => base64ToUrl(f as string))
-      : files.map(f => URL.createObjectURL(f)));
+
+  const urls: Urls[] = files ? files.map(f =>  typeof f === 'string' 
+  ? {type: 'base64', url: base64ToUrl(f as string) ?? ''}
+  : {type: 'blob', url: URL.createObjectURL(f)}): [];
+
+  console.log('files: ', files)
 
   return (
     <Div>
       {urls &&
-        urls.map((url, i) => (
+        urls.map(({type, url}, i) => (
           <div key={i} className='image-container hoverable'>
             <img
               src={url}
               onLoad={function () {
-                url && URL.revokeObjectURL(url);
+                if(url && type === 'blob') URL.revokeObjectURL(url);
               }}
               alt='product-images'
             />
@@ -61,11 +67,6 @@ const Div = styled.div`
     margin-right: 0.7em;
     margin-bottom: 0.7em;
     position: relative;
-    :hover {
-      .clear-btn {
-        opacity: 1;
-      }
-    }
 
     img {
       width: 100%;
@@ -79,7 +80,6 @@ const Div = styled.div`
       top: 4px;
       right: 4px;
       color: maroon;
-      opacity: 0;
       transition: opacity 200ms;
     }
   }

@@ -3,7 +3,7 @@ import { Product } from './Product.types';
 export interface User {
   id?: string;
   name?: string;
-  gender?: 'male' | 'female' | 'other';
+  gender?: Gender;
   birthdate?: string;
   avatar?: string;
   username?: string;
@@ -13,6 +13,12 @@ export interface User {
   wishlists?: Product[];
   cart?: CartItemType[];
   notifications?: Notification[];
+}
+
+export enum Gender {
+  MALE = 'MALE',
+  FEMALE = 'FEMALE',
+  OTHER = 'OTHER',
 }
 
 export interface Notification {

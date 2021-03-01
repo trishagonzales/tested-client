@@ -14,7 +14,7 @@ export interface CartItemProps {
 }
 
 const CartItem: React.FC<CartItemProps> = ({ item }) => {
-  const { removeItem, updateItem } = useCart(item.product.id);
+  const { deleteItem, updateItem } = useCart(item.product.id);
   const { quantity, QuantityCounter } = useQuantity(item.product.stock, item.quantity);
   const [isIncluded, setIncluded] = useState(item.isIncluded);
 
@@ -50,7 +50,7 @@ const CartItem: React.FC<CartItemProps> = ({ item }) => {
 
       <QuantityCounter className='quantity-counter' />
 
-      <RemoveButton onClick={removeItem} />
+      <RemoveButton onClick={deleteItem} />
     </Div>
   );
 };

@@ -21,25 +21,24 @@ const AccountSettings: React.FC<AccountSettingsProps> = () => {
       </Row>
 
       <FormWithEditMode
-        className='form-control'
         label='Username'
         data={user?.username}
         callback={updateUsername}
         withPasswordValidation
       />
+
+      <hr />
+
       <FormWithEditMode
-        className='form-control'
         label='Email'
         data={user?.email}
         callback={updateEmail}
         withPasswordValidation
       />
-      <FormWithEditMode
-        className='form-control'
-        label='Password'
-        callback={updatePassword}
-        withPasswordValidation
-      />
+
+      <hr />
+
+      <FormWithEditMode label='Password' callback={updatePassword} withPasswordValidation />
     </Div>
   );
 };
@@ -47,10 +46,11 @@ const AccountSettings: React.FC<AccountSettingsProps> = () => {
 export default AccountSettings;
 
 const Div = styled.div`
-  .form-control {
-    margin-bottom: 1.5em;
-  }
   label {
     font-weight: 300;
+  }
+
+  hr {
+    margin: 2em 0;
   }
 `;

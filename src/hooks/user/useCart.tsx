@@ -26,9 +26,9 @@ const ADD_ITEM = gql`
   ${CartItemData}
 `;
 
-const REMOVE_ITEM = gql`
+const DELETE_ITEM = gql`
   mutation($productID: String!) {
-    removeCartItem(productID: $productID) {
+    deleteCartItem(productID: $productID) {
       ...CartItemData
     }
   }
@@ -68,8 +68,8 @@ export function useCart(productID?: string) {
     onError: err => displayErrors(addToast, err),
   });
 
-  const [removeAPI] = useMutation<{ removeCartItem: CartItemType }>(REMOVE_ITEM, {
-    onCompleted: ({ removeCartItem: item }) =>
+  const [deleteAPI] = useMutation<{ deleteCartItem: CartItemType }>(DELETE_ITEM, {
+    onCompleted: ({ deleteCartItem: item }) =>
       globalDispatch({ type: 'UPDATE_CART', cart: items.filter(i => i.id !== item.id) }),
     onError: err => displayErrors(addToast, err),
   });
@@ -103,8 +103,8 @@ export function useCart(productID?: string) {
     [items]
   );
 
-  const removeItem = useCallback(() => {
-    removeAPI({ variables: { productID } });
+  const deleteItem = useCallback(() => {
+    deleteAPI({ variables: { productID } });
   }, [items]);
 
   const updateItem = useCallback(
@@ -129,7 +129,7 @@ export function useCart(productID?: string) {
     totalPrice,
     getCartItems,
     addItem,
-    removeItem,
+    deleteItem,
     updateItem,
     clearCart,
     isAdded,

@@ -16,47 +16,48 @@ const ADD_PRODUCT = gql`
   ${ProductData}
 `;
 
-const EDIT_PRODUCT = gql`
-  mutation($input: EditProductInput!) {
-    editProduct(input: $input) {
+const UPDATE_PRODUCT = gql`
+  mutation($input: UpdateProductInput!) {
+    updateProduct(input: $input) {
       ...ProductData
     }
   }
   ${ProductData}
 `;
 
-const REMOVE_PRODUCT = gql`
+const DELETE_PRODUCT = gql`
   mutation($id: String!) {
-    removeProduct(id: $id)
+    deleteProduct(id: $id)
   }
 `;
 
-export function useAdmin(initialFiles?: string[]) {
-  const addUpload = useUpload({ type: 'product' });
-  const editUpload = useUpload({ type: 'product', initialFiles });
+export function useAdmin() {
+  const addProductUpload = useUpload({ type: 'product' });
+  const updateProductUpload = useUpload({ type: 'product' });
   const { addToast } = useToasts();
   let history = useHistory();
 
   const [addProduct] = useMutation<{ addProduct: Product }>(ADD_PRODUCT, {
-    onCompleted: data => addUpload.upload(data.addProduct.id),
+    onCompleted: data => addProductUpload.upload(data.addProduct.id),
     onError: err => displayErrors(addToast, err),
   });
 
-  const [editProduct] = useMutation<{ editProduct: Product }>(EDIT_PRODUCT, {
+  const [updateProduct] = useMutation<{ updateProduct: Product }>(UPDATE_PRODUCT, {
     onCompleted: data => {
-      editUpload.areFilesChanged && editUpload.upload(data.editProduct.id);
+      if (updateProductUpload.areFilesChanged)
+        updateProductUpload.upload(data.updateProduct.id, data.updateProduct.images);
     },
     onError: err => displayErrors(addToast, err),
   });
 
-  const [removeProduct] = useMutation<{ removeProduct: boolean }>(REMOVE_PRODUCT, {
-    onCompleted: data => data.removeProduct && history.go(0),
+  const [deleteProduct] = useMutation<{ deleteProduct: boolean }>(DELETE_PRODUCT, {
+    onCompleted: data => data.deleteProduct && history.go(0),
     onError: err => displayErrors(addToast, err),
   });
 
   return {
-    addProps: { addProduct, uploadProps: addUpload },
-    editProps: { editProduct, uploadProps: editUpload },
-    removeProduct,
+    addProductProps: { addProduct, uploadProps: addProductUpload },
+    updateProductProps: { updateProduct, uploadProps: updateProductUpload },
+    deleteProduct,
   };
 }

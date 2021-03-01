@@ -8,12 +8,12 @@ export interface AddToCartButtonProps extends ButtonProps {
 }
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productID, quantity, ...btnProps }) => {
-  const { addItem, removeItem, isAdded } = useCart(productID);
+  const { addItem, deleteItem, isAdded } = useCart(productID);
 
   return (
     <>
       {isAdded() ? (
-        <Button onClick={() => removeItem()} {...btnProps} outline>
+        <Button onClick={() => deleteItem()} {...btnProps} outline>
           <i className='fas fa-cart-plus'></i>
           {''} ADDED TO CART
         </Button>
