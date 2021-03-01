@@ -33,7 +33,7 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
           <TabContent className='tab-content' name='reviews'>
             <div className='reviews'>
               {product?.reviews?.map(review => (
-                <ReviewItem key={review.id} review={review} />
+                <ReviewItem className='review-item' key={review.id} review={review} />
               ))}
             </div>
           </TabContent>
@@ -46,42 +46,49 @@ const ProductDetails: React.FC<ProductDetailsProps> = ({ product }) => {
 export default ProductDetails;
 
 const Div = styled.div`
+  margin-bottom: 50px;
+
   .tab-header {
     .tab {
-      padding: 0.7em;
+      padding: 0.9em;
       border-radius: 6px 6px 0 0;
       color: var(--grey);
       font-size: 18px;
     }
     .active {
-      background: var(--main);
-      color: white;
+      border: 1px solid var(--grey);
+      border-bottom: none;
+      color: var(--main);
     }
   }
 
   .tab-body {
-    min-height: 500px;
-    background: var(--main);
+    min-height: 300px;
+    border: 1px solid var(--grey);
     .tab-content {
       padding: 1em;
     }
     .description {
-      margin: 1em 1.5em;
-      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      padding: 2em 1em;
       background: white;
       border-radius: 5px;
       font-size: 14px;
       color: var(--fg);
       white-space: pre-wrap;
-      line-height: 1.7em;
+      line-height: 2em;
     }
     .reviews {
       padding: 1em;
+      .review-item {
+        box-shadow: 1px 1px 5px grey;
+      }
     }
   }
 
   @media ${device.narrow} {
-    .body {
+    .tab-body {
       width: 100vw;
     }
   }
