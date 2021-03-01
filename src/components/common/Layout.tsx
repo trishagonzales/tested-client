@@ -62,6 +62,6 @@ export const Row = styled.div<RowProps>`
   }
 `;
 
-export const Column = styled.div`
-  flex: 1;
+export const Column = styled.div<{ flex?: string }>`
+  flex: ${p => p.flex ?? '1'};
 `;
