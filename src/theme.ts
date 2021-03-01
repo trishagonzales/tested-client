@@ -1,5 +1,5 @@
 export const colors = {
-  navyBlue: '#2F2C40',
+  blue: '#292141',
   maroon: '#A63429',
   redOrange: '#F25922',
   red: '#D93829',
@@ -12,7 +12,7 @@ export const colors = {
 };
 
 export const theme = {
-  main: colors.navyBlue,
+  main: colors.blue,
   main2: colors.maroon,
   accent: colors.redOrange,
   fg: colors.charcoal,
