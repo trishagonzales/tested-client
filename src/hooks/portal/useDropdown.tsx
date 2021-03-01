@@ -39,10 +39,10 @@ const DropdownStyle = styled.div`
   position: relative;
 `;
 const DropdownBtnStyle = styled.div``;
-const DropdownContentStyle = styled.div<{ align: 'left' | 'right' }>`
+const DropdownContentStyle = styled.div<{ align?: 'left' | 'right' }>`
   position: absolute;
   top: 110%;
-  ${p => (p.align === 'left' ? 'left: 0' : 'right: 0')};
+  ${p => (p.align === 'right' ? 'right: 0' : 'left: 0')};
   z-index: 150;
 `;
 

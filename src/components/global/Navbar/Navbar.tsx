@@ -1,14 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
 
-import { Container } from '../../common/Layout';
-import { BurgerButton } from './BurgerButton';
+import { Container, Row } from '../../common/Layout';
 import { Brand } from './Brand';
 import { SearchBox } from './SearchBox';
 import { CartButton } from './CartButton';
 import { AccountDropdown } from './AccountDropdown';
 import { device } from '../../../theme';
-import { NavDropdown } from './NavDropdown';
+import { useDropdown } from '../../../hooks/portal/useDropdown';
 
 export interface NavbarProps {}
 
@@ -30,6 +29,7 @@ export const Nav = styled.nav`
   background: var(--main);
 
   .container {
+    max-height: 55px;
     padding: 7px 20px;
     display: flex;
     justify-content: space-between;
@@ -50,17 +50,28 @@ export const Nav = styled.nav`
 export interface NavbarMobileProps {}
 
 export const NavbarMobile: React.FC<NavbarMobileProps> = () => {
-  const [isNavDropdownOpen, setNavDropdownOpen] = useState(false);
+  const { Dropdown, DropdownBtn, DropdownContent, close } = useDropdown();
 
   return (
     <NavMobile>
       <Container className='container'>
-        <BurgerButton isOpen={isNavDropdownOpen} setOpen={setNavDropdownOpen} />
         <Brand className='brand' />
-        <CartButton className='cart-btn' />
-        <AccountDropdown />
 
-        <NavDropdown isOpen={isNavDropdownOpen} />
+        <Dropdown className='search-dropdown'>
+          <DropdownBtn className='btn'>
+            <i className='fas fa-search hoverable'></i>
+          </DropdownBtn>
+          <DropdownContent className='content'>
+            <Row justifyContent='space-between'>
+              <SearchBox className='searchbox' />
+              <i className='fas fa-times x-btn hoverable' onClick={close}></i>
+            </Row>
+          </DropdownContent>
+        </Dropdown>
+
+        <CartButton className='cart-btn' />
+
+        <AccountDropdown />
       </Container>
     </NavMobile>
   );
@@ -71,6 +82,8 @@ export const NavMobile = styled.nav`
 
   .container {
     width: 100vw;
+    max-height: 55px;
+    position: relative;
     padding: 7px 3%;
     position: relative;
     display: flex;
@@ -81,6 +94,31 @@ export const NavMobile = styled.nav`
   .brand {
     margin-left: 3%;
     margin-right: auto;
+  }
+
+  .search-dropdown {
+    position: unset;
+    .btn {
+      height: 100%;
+      font-size: 18px;
+      color: white;
+    }
+    .content {
+      width: 100vw;
+      padding: 0.5em;
+      top: 100%;
+      left: 0;
+      background: var(--main);
+      .x-btn {
+        padding: 0.5em 1em;
+        font-size: 18px;
+        color: white;
+      }
+    }
+  }
+
+  .cart-btn {
+    margin: 0 0.8em;
   }
 
   @media ${device.narrow} {
