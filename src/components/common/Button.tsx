@@ -7,6 +7,7 @@ export interface ButtonProps {
   primary?: boolean;
   outline?: boolean;
   textOnly?: boolean;
+  invert?: boolean;
   fullwidth?: boolean;
   className?: string;
   fontsize?: string;
@@ -20,10 +21,15 @@ export const Button = styled.button<ButtonProps>`
   background: ${p => {
     if (p.primary) return 'var(--main)';
     if (p.outline || p.textOnly) return 'none';
+    if (p.invert) return 'white';
     return 'var(--lightgrey)';
   }};
   border: ${p => (p.textOnly ? null : '1px solid var(--lightgrey)')};
-  border-color: ${p => (p.primary || p.outline ? 'var(--main)' : 'var(--lightgrey)')};
+  border-color: ${p => {
+    if (p.primary || p.outline) return 'var(--main)';
+    if (p.invert) return 'white';
+    return 'var(--lightgrey)';
+  }};
   border-radius: 5px;
   color: ${p => (p.primary ? 'white' : 'var(--main)')};
   text-transform: uppercase;
