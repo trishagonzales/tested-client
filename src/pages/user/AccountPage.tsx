@@ -1,14 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useTabs } from '../hooks/common/useTabs';
-import { lazy } from '../utils/dynamicImports.util';
-import { device } from '../theme';
+import { useTabs } from '../../hooks/common/useTabs';
+import { lazy } from '../../utils/dynamicImports.util';
+import { device } from '../../theme';
 
-import { PageHeader, PageTitle } from '../components/global/PageHeader';
-import { Container } from '../components/common/Layout';
+import { PageHeader, PageTitle } from '../../components/global/PageHeader';
+import { Container } from '../../components/common/Layout';
 
-const Profile = lazy(() => import('../components/user/account/Profile'));
-const AccountSettings = lazy(() => import('../components/user/account/AccountSettings'));
+const Profile = lazy(() => import('../../components/user/account/Profile'));
+const AccountSettings = lazy(() => import('../../components/user/account/AccountSettings'));
 
 export interface AccountPageProps {}
 

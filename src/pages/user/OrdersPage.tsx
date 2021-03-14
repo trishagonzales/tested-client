@@ -1,12 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { useOrder } from '../hooks/product/useOrder';
-import { device } from '../theme';
+import { useOrder } from '../../hooks/product/useOrder';
+import { device } from '../../theme';
 
-import { PageHeader, PageTitle, PageHeaderButtons } from '../components/global/PageHeader';
-import { Button } from '../components/common/Button';
-import { Container } from '../components/common/Layout';
-import OrderItem from '../components/user/orders list/OrderItem';
+import { PageHeader, PageTitle, PageHeaderButtons } from '../../components/global/PageHeader';
+import { Button } from '../../components/common/Button';
+import { Container } from '../../components/common/Layout';
+import OrderItem from '../../components/user/orders list/OrderItem';
 
 export interface OrdersPageProps {}
 

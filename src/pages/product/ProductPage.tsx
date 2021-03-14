@@ -1,11 +1,10 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
-import { useProduct } from '../hooks/product/useProduct';
-import { useQuantity } from '../hooks/product/useQuantity';
+import { useProduct } from '../../hooks/product/useProduct';
 
-import { Container } from '../components/common/Layout';
-import ProductOverview from '../components/product/product page/ProductOverview';
-import ProductDetails from '../components/product/product page/ProductDetails';
+import { Container } from '../../components/common/Layout';
+import ProductOverview from '../../components/product/product page/ProductOverview';
+import ProductDetails from '../../components/product/product page/ProductDetails';
 
 export interface ProductPageProps {}
 

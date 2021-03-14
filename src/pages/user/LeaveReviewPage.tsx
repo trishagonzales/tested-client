@@ -3,15 +3,15 @@ import { useRouteMatch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
-import { displayErrors } from '../hooks/common/useApiError';
-import { useFormInput } from '../hooks/common/useFormInput';
-import { ReviewType } from '../types/Product.types';
-import { device } from '../theme';
+import { displayErrors } from '../../hooks/common/useApiError';
+import { useFormInput } from '../../hooks/common/useFormInput';
+import { ReviewType } from '../../types/Product.types';
+import { device } from '../../theme';
 
-import { PageHeader, PageTitle } from '../components/global/PageHeader';
-import { Button } from '../components/common/Button';
-import { Container, Row } from '../components/common/Layout';
-import { Textarea } from '../components/common/Form';
+import { PageHeader, PageTitle } from '../../components/global/PageHeader';
+import { Button } from '../../components/common/Button';
+import { Container, Row } from '../../components/common/Layout';
+import { Textarea } from '../../components/common/Form';
 
 const CREATE_REVIEW = gql`
   mutation($input: CreateReviewInput!) {
@@ -25,7 +25,7 @@ const LeaveReviewPage: React.FC<LeaveReviewPageProps> = () => {
   const [rating, setRating] = useState(0);
   const comment = useFormInput();
 
-  const { params } = useRouteMatch<{ id: string }>();
+  const { params } = useRouteMatch<{ orderID: string }>();
   const { addToast } = useToasts();
   let history = useHistory();
 
@@ -80,7 +80,7 @@ const LeaveReviewPage: React.FC<LeaveReviewPageProps> = () => {
                 rating !== 0
                   ? createReview({
                       variables: {
-                        input: { rating, comment: comment.props.value, orderID: params.id },
+                        input: { rating, comment: comment.props.value, orderID: params.orderID },
                       },
                     })
                   : addToast('Rating required', { appearance: 'error' });

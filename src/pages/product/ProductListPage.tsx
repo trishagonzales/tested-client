@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 import styled from 'styled-components';
-import { useProducts } from '../hooks/product/useProducts';
+import { useProducts } from '../../hooks/product/useProducts';
+import { usePagination } from '../../hooks/usePagination';
 
-import { Container, HorizontalCenter } from '../components/common/Layout';
-import ProductCard from '../components/product/ProductCard';
-import { PageHeader, PageTitle } from '../components/global/PageHeader';
-import { usePagination } from '../hooks/usePagination';
+import { Container, HorizontalCenter } from '../../components/common/Layout';
+import ProductCard from '../../components/product/ProductCard';
+import { PageHeader, PageTitle } from '../../components/global/PageHeader';
 
 export interface ProductListPageProps {}
 

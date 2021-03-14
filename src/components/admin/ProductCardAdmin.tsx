@@ -19,7 +19,7 @@ const ProductCardAdmin: React.FC<ProductCardAdminProps> = ({ product }) => {
   return (
     <Div>
       <Row className='actions' justifyContent='flex-end'>
-        <LinkButton to={'/admin/edit-product/' + product.id} textOnly>
+        <LinkButton to={'/admin/product/edit/' + product.id} textOnly>
           <i className='fas fa-edit'></i> <span>EDIT</span>
         </LinkButton>
         <Button className='remove-btn' onClick={open} textOnly>

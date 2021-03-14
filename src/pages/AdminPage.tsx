@@ -19,7 +19,7 @@ const AdminPage: React.FC<AdminPageProps> = () => {
       <PageHeader>
         <PageTitle>ADMIN PAGE</PageTitle>
         <PageHeaderButtons>
-          <LinkButton to='/admin/add-product' iconBreakpoint>
+          <LinkButton to='/admin/product/add' iconBreakpoint>
             <i className='fas fa-plus'></i>
             <span>ADD PRODUCT</span>
           </LinkButton>

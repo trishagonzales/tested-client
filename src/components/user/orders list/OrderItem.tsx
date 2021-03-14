@@ -52,7 +52,7 @@ const OrderItem: React.FC<OrderItemProps> = ({ className, order, removeOrder }) 
 
       <Row className='total-price' justifyContent='space-between'>
         {order.status === 'COMPLETED' && !order.isReviewed && (
-          <LinkButton textOnly to={'/leave-review/' + order.id}>
+          <LinkButton textOnly to={'/review/write/' + order.id}>
             Leave review
           </LinkButton>
         )}

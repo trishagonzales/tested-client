@@ -1,15 +1,15 @@
 import React from 'react';
 import { useRouteMatch } from 'react-router-dom';
 import styled from 'styled-components';
-import { useTabs } from '../hooks/common/useTabs';
-import { lazy } from '../utils/dynamicImports.util';
+import { useTabs } from '../../hooks/common/useTabs';
+import { lazy } from '../../utils/dynamicImports.util';
 
-import { Container, Section } from '../components/common/Layout';
-import { PageHeader, PageTitle } from '../components/global/PageHeader';
+import { Container, Section } from '../../components/common/Layout';
+import { PageHeader, PageTitle } from '../../components/global/PageHeader';
 
-const Cart = lazy(() => import('../components/product/buy/Cart'));
-const Checkout = lazy(() => import('../components/product/buy/Checkout'));
-const OrderCompleted = lazy(() => import('../components/product/buy/OrderCompleted'));
+const Cart = lazy(() => import('../../components/product/buy/Cart'));
+const Checkout = lazy(() => import('../../components/product/buy/Checkout'));
+const OrderCompleted = lazy(() => import('../../components/product/buy/OrderCompleted'));
 
 export interface OrderPageProps {}
 
@@ -36,7 +36,7 @@ const BuyPage: React.FC<OrderPageProps> = () => {
               <Tab className='tab' name='checkout'>
                 CHECKOUT
               </Tab>
-              <Tab className='tab' name='complete'>
+              <Tab className='tab' name='order-completed'>
                 COMPLETE
               </Tab>
             </TabHeader>
