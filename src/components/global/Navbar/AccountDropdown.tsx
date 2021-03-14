@@ -51,8 +51,12 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = () => {
             </ul>
           ) : (
             <ul>
-              <Link to='/login'>Login</Link>
-              <Link to='/signup'>Signup</Link>
+              <Link onClick={close} to='/login'>
+                Login
+              </Link>
+              <Link onClick={close} to='/signup'>
+                Signup
+              </Link>
             </ul>
           )}
         </DropdownContent>
