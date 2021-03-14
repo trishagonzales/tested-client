@@ -72,10 +72,14 @@ const Profile: React.FC<ProfileProps> = () => {
         onSubmit={input => updateProfile({ variables: { input } })}>
         {() => (
           <Form>
+            <hr />
+
             <div className='field'>
               <Label>Name</Label>
               {inEditMode ? <FormikField name='name' /> : <p className='userData'>{user?.name}</p>}
             </div>
+
+            <hr />
 
             <div className='field'>
               <Label>Gender</Label>
@@ -89,6 +93,8 @@ const Profile: React.FC<ProfileProps> = () => {
                 <p className='userData'>{user?.gender}</p>
               )}
             </div>
+
+            <hr />
 
             <div className='field'>
               <Label>Birthdate</Label>
@@ -118,13 +124,16 @@ const Profile: React.FC<ProfileProps> = () => {
 export default Profile;
 
 const Div = styled.div`
+  hr {
+    margin: 2em 0;
+  }
+
   .avatar-upload {
     margin-top: 1em;
     margin-bottom: 2em;
   }
 
   .field {
-    min-height: 80px;
     label {
       font-weight: normal;
     }
