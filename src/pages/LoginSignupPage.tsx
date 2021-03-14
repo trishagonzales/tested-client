@@ -93,6 +93,11 @@ const Section = styled.section`
     .title-underline {
       margin-bottom: 40px;
     }
+    .forgot-password-link {
+      margin-top: 3em;
+      display: block;
+      font-size: 14px;
+    }
     button {
       margin-top: 40px;
     }

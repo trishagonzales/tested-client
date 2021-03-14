@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import styled from 'styled-components';
 import TextareaAutosize from 'react-textarea-autosize';
+import { BaseProps } from '../../types/General.types';
 
-export interface FormProps {
+export interface FormProps extends BaseProps {
   fullwidth?: boolean;
 }
 
@@ -34,8 +35,11 @@ export const Textarea = styled(TextareaAutosize)<FormProps>`
   }
 `;
 
-export const PasswordInput: React.FC = props => {
+export const PasswordInput: React.FC<
+  FormProps & React.InputHTMLAttributes<HTMLInputElement>
+> = props => {
   const [visible, setVisible] = useState(false);
+
   return (
     <PasswordInputStyle>
       <Input {...props} type={visible ? 'text' : 'password'} />

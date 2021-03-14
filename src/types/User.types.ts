@@ -8,7 +8,7 @@ export interface User {
   avatar?: string;
   username?: string;
   email?: string;
-  emailConfirmed?: boolean;
+  isEmailConfirmed?: boolean;
   dateCreated?: Date;
   wishlists?: Product[];
   cart?: CartItemType[];

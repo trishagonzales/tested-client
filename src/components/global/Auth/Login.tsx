@@ -6,6 +6,7 @@ import { Button } from '../../common/Button';
 import { FormikField } from '../../common/FormikField';
 import { LoginInput } from '../../../types/General.types';
 import { PasswordInput } from '../../common/Form';
+import { Link } from 'react-router-dom';
 
 const Formik = lazy(() => import('formik'), 'Formik');
 const Form = lazy(() => import('formik'), 'Form');
@@ -41,6 +42,10 @@ const Login: React.FC<LoginProps> = ({ login, className }) => {
             as={PasswordInput}
             required
           />
+
+          <Link className='forgot-password-link hoverable-text blue-color' to='/password/forgot'>
+            Forgot password
+          </Link>
 
           <Button fullwidth primary>
             LOGIN

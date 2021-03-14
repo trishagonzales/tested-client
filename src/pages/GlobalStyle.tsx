@@ -80,6 +80,9 @@ export const GlobalStyle = createGlobalStyle`
   .white-color {
     color: white;
   }
+  .blue-color {
+    color: #2f2fff;
+  }
   .title-underline {
     width: 30px;
     height: 8px;

@@ -10,6 +10,7 @@ export const UserData = gql`
     avatar
     username
     email
+    isEmailConfirmed
     dateCreated
   }
 `;
