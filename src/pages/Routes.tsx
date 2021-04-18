@@ -1,5 +1,6 @@
 import React from 'react';
 import { RouteProps, Route, Switch } from 'react-router-dom';
+import ErrorBoundary from '../components/common/ErrorBoundary';
 import { lazy } from '../utils/dynamicImports.util';
 
 const HomePage = lazy(() => import('./HomePage'));
@@ -23,11 +24,15 @@ const EditProduct = lazy(() => import('../components/admin/EditProduct'));
 
 export interface RoutesProps {
   routes: RouteProps[];
-  visible: boolean;
+  condition: boolean;
 }
 
-export const Routes: React.FC<RoutesProps> = ({ visible, routes }) => {
-  return <Switch>{visible ? routes.map((route, i) => <Route key={i} {...route} />) : null}</Switch>;
+export const Routes: React.FC<RoutesProps> = ({ condition, routes }) => {
+  return (
+    <ErrorBoundary>
+      <Switch>{condition ? routes.map((route, i) => <Route key={i} {...route} />) : null}</Switch>
+    </ErrorBoundary>
+  );
 };
 
 export const globalRoutes = [

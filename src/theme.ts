@@ -8,6 +8,7 @@ export const colors = {
   lightGrey: '#E5E5E5',
   grey: '#AAAAAA',
   darkGrey: '#707070',
+  slate: '#555',
   charcoal: '#333',
 };
 
@@ -16,7 +17,7 @@ export const theme = {
   main2: colors.maroon,
   accent: colors.redOrange,
   fg: colors.charcoal,
-  fg2: colors.darkGrey,
+  fg2: colors.slate,
   bg: colors.smoke,
   error: 'crimson',
 };

@@ -54,8 +54,10 @@ export const Card = styled.div`
   width: 180px;
   padding: 0.5em;
   position: relative;
+  background: white;
   border: 1px solid white;
   border-radius: 5px;
+  box-shadow: 1px 3px 10px #d0d0d0;
   transition: border-color ease-in 100ms;
   cursor: pointer;
   :hover {

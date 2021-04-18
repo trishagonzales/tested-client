@@ -60,7 +60,7 @@ export const PaginationStyle = styled.div<PaginationProps>`
     border: 1px solid var(--lightgrey);
     border-radius: 5px;
     color: var(--darkgrey);
-    font-size: ${p => p.fontsize ?? '14px'};
+    font-size: ${p => p.fontsize ?? '16px'};
     cursor: pointer;
     :hover:not(.active) {
       color: var(--main);

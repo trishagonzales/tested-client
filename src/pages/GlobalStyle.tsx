@@ -17,6 +17,9 @@ export const GlobalStyle = createGlobalStyle`
 
     /* Border */
     --borderRadius: 5px;
+
+    /* Card box shadow */
+    --cardBoxShadow: 1px 3px 10px #d0d0d0;
   }
 
   * {

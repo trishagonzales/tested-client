@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
+import { BaseProps } from '../../types/General.types';
+import { device } from '../../theme';
 
 import { LinkButton } from '../common/Button';
 import { Row } from '../common/Layout';
-import { device } from '../../theme';
 
-export interface PreviewListProps {
+export interface PreviewListProps extends BaseProps {
   title: string;
   moreLink: string;
 }
@@ -27,16 +28,18 @@ const PreviewList: React.FC<PreviewListProps> = ({ children, title, moreLink }) 
 export default PreviewList;
 
 const Div = styled.div`
+  margin-bottom: 4em;
   padding: 30px 0;
 
   .title-more {
-    padding-bottom: 30px;
+    padding-bottom: 40px;
     h2 {
       font-family: Poppins;
-      font-size: 30px;
+      font-size: 26px;
       color: var(--main);
     }
   }
+
   .list {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(180px, 200px));
