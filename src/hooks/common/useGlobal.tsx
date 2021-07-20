@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { GlobalContext } from '../../providers/providers';
+import { GlobalStateContext } from '../../providers/contexts/GlobalState.context';
 
 export function useGlobal() {
-  const { globalState, globalDispatch } = useContext(GlobalContext);
+  const { globalState, globalDispatch } = useContext(GlobalStateContext);
   return { globalState, globalDispatch };
 }

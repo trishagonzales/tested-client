@@ -2,7 +2,6 @@ import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
-import { displayErrors } from '../common/useApiError';
 import { RatingType, ReviewType } from '../../types/Product.types';
 
 const CREATE_REVIEW = gql`
@@ -32,12 +31,10 @@ export function useReview() {
       addToast('Review complete', { appearance: 'success' });
       history.replace('/orders');
     },
-    onError: err => displayErrors(addToast, err),
   });
 
   const [deleteReviewAPI] = useMutation<{ deleteReview: ReviewType }>(DELETE_REVIEW, {
     onCompleted: () => history.go(0),
-    onError: err => displayErrors(addToast, err),
   });
 
   const createReview = useCallback(

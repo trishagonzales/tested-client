@@ -3,7 +3,6 @@ import { useRouteMatch, useHistory } from 'react-router-dom';
 import styled from 'styled-components';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
-import { displayErrors } from '../../hooks/common/useApiError';
 import { useFormInput } from '../../hooks/common/useFormInput';
 import { ReviewType } from '../../types/Product.types';
 import { device } from '../../theme';
@@ -34,7 +33,6 @@ const LeaveReviewPage: React.FC<LeaveReviewPageProps> = () => {
       data.createReview && addToast('Review complete');
       history.replace('/orders');
     },
-    onError: err => displayErrors(addToast, err),
   });
 
   return (

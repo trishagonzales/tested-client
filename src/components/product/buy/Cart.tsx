@@ -2,11 +2,13 @@ import React from 'react';
 import styled from 'styled-components';
 import { useCart } from '../../../hooks/user/useCart';
 import { lazy } from '../../../utils/dynamicImports.util';
+import { device } from '../../../theme';
 
 import { LinkButton } from '../../common/Button';
 import { ActionButtons } from './ActionButtons';
-import { device } from '../../../theme';
 import { Row } from '../../common/Layout';
+import { StickerNotice } from '../../common/StickerNotice';
+import If from '../../common/If';
 
 const Price = lazy(() => import('../common/Price'));
 const CartItem = lazy(() => import('./CartItem'));
@@ -18,9 +20,11 @@ const Cart: React.FC<CartProps> = () => {
 
   return (
     <Div>
-      {items.map(item => (
-        <CartItem item={item} key={item.id} />
-      ))}
+      <If condition={items.length > 0} elseRender={<StickerNotice>CART EMPTY</StickerNotice>}>
+        {items.map(item => (
+          <CartItem item={item} key={item.id} />
+        ))}
+      </If>
 
       <Row className='total-price' justifyContent='flex-end'>
         <Price fontSize='20px' label='Total'>

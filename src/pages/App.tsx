@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import Cookies from 'js-cookie';
 import { GlobalStyle } from './GlobalStyle';
 import { useUser } from '../hooks/user/useUser';
 import { useCart } from '../hooks/user/useCart';
@@ -26,7 +25,7 @@ export function App() {
   const { getOrderItems } = useOrder();
 
   useEffect(() => {
-    if (Cookies.get('cid')) getUserData();
+    if (!user) getUserData();
   }, []);
 
   useEffect(() => {
@@ -47,11 +46,11 @@ export function App() {
       </ErrorBoundary>
 
       <div id='content'>
-        <Routes condition={cartItems && cartItems.length !== 0} routes={checkoutRoutes} />
-        <Routes condition={isAdmin} routes={adminRoutes} />
-        <Routes condition={!!user} routes={userRoutes} />
-        <Routes condition={!!!user} routes={logoutRoutes} />
-        <Routes condition={true} routes={globalRoutes} />
+        <Routes renderIf={!user} routes={logoutRoutes} />
+        <Routes renderIf={isAdmin} routes={adminRoutes} />
+        <Routes renderIf={cartItems && cartItems.length !== 0} routes={checkoutRoutes} />
+        <Routes renderIf={!!user} routes={userRoutes} />
+        <Routes renderIf={true} routes={globalRoutes} />
       </div>
 
       <ErrorBoundary>

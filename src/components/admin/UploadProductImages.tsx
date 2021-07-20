@@ -6,7 +6,7 @@ import { base64ToUrl } from '../../utils/files.util';
 import { Center } from '../common/Layout';
 
 interface Urls {
-  url: string
+  url: string;
   type: 'base64' | 'blob';
 }
 
@@ -15,22 +15,23 @@ export const UploadProductImages: React.FC<UploadHookReturn> = ({
   remove,
   UploadButton,
 }) => {
-
-  const urls: Urls[] = files ? files.map(f =>  typeof f === 'string' 
-  ? {type: 'base64', url: base64ToUrl(f as string) ?? ''}
-  : {type: 'blob', url: URL.createObjectURL(f)}): [];
-
-  console.log('files: ', files)
+  const urls: Urls[] = files
+    ? files.map(f =>
+        typeof f === 'string'
+          ? { type: 'base64', url: base64ToUrl(f as string) ?? '' }
+          : { type: 'blob', url: URL.createObjectURL(f) }
+      )
+    : [];
 
   return (
     <Div>
       {urls &&
-        urls.map(({type, url}, i) => (
+        urls.map(({ type, url }, i) => (
           <div key={i} className='image-container hoverable'>
             <img
               src={url}
               onLoad={function () {
-                if(url && type === 'blob') URL.revokeObjectURL(url);
+                if (url && type === 'blob') URL.revokeObjectURL(url);
               }}
               alt='product-images'
             />

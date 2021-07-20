@@ -1,10 +1,8 @@
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
 import { gql, useMutation, useLazyQuery } from '@apollo/client';
-import { useToasts } from 'react-toast-notifications';
 
 import { useGlobal } from '../common/useGlobal';
-import { displayErrors } from '../common/useApiError';
 import { UserData } from '../../api/fragments/User.fragment';
 import { LoginInput, SignupInput } from '../../types/General.types';
 import { User } from '../../types/User.types';
@@ -25,7 +23,7 @@ const GET_USER_DATA = gql`
 `;
 
 const LOGIN = gql`
-  mutation($input: LoginInput!) {
+  mutation ($input: LoginInput!) {
     login(input: $input) {
       ...UserData
     }
@@ -34,7 +32,7 @@ const LOGIN = gql`
 `;
 
 const SIGNUP = gql`
-  mutation($input: SignupInput!) {
+  mutation ($input: SignupInput!) {
     signup(input: $input) {
       ...UserData
     }
@@ -53,11 +51,10 @@ export function useUser() {
     globalState: { user, isAdmin },
     globalDispatch,
   } = useGlobal();
-  const { addToast } = useToasts();
   let history = useHistory();
 
   const [isAdminAPI] = useLazyQuery<{ isAdmin: boolean }>(IS_ADMIN, {
-    onCompleted: ({ isAdmin }) => globalDispatch({ type: 'IS_ADMIN', isAdmin }),
+    onCompleted: data => globalDispatch({ type: 'IS_ADMIN', isAdmin: !!data.isAdmin }),
     errorPolicy: 'ignore',
   });
 
@@ -71,7 +68,6 @@ export function useUser() {
       globalDispatch({ type: 'LOGIN', user: login });
       history.replace('/');
     },
-    onError: error => displayErrors(addToast, error),
   });
 
   const [signupAPI, signupRes] = useMutation<{ signup: User }>(SIGNUP, {
@@ -79,7 +75,6 @@ export function useUser() {
       globalDispatch({ type: 'LOGIN', user: signup });
       history.replace('/');
     },
-    onError: error => displayErrors(addToast, error),
   });
 
   const [logoutAPI, logoutRes] = useMutation(LOGOUT, {
@@ -88,7 +83,6 @@ export function useUser() {
       globalDispatch({ type: 'IS_ADMIN', isAdmin: false });
       history.replace('/');
     },
-    onError: error => displayErrors(addToast, error),
     errorPolicy: 'all',
   });
 

@@ -8,6 +8,8 @@ import { useProducts } from '../hooks/product/useProducts';
 import { Product } from '../types/Product.types';
 import { Container, Row } from '../components/common/Layout';
 import ProductCardAdmin from '../components/admin/ProductCardAdmin';
+import If from '../components/common/If';
+import { StickerNotice } from '../components/common/StickerNotice';
 
 export interface AdminPageProps {}
 
@@ -23,19 +25,19 @@ const AdminPage: React.FC<AdminPageProps> = () => {
             <i className='fas fa-plus'></i>
             <span>ADD PRODUCT</span>
           </LinkButton>
-          <LinkButton to='/admin/settings' iconBreakpoint>
-            <i className='fas fa-cog'></i>
-            <span>SETTINGS</span>
-          </LinkButton>
         </PageHeaderButtons>
       </PageHeader>
 
       <Container>
-        <Row className='products'>
-          {products?.map((product: Product, i: number) => (
-            <ProductCardAdmin key={i} product={product} />
-          ))}
-        </Row>
+        <If
+          condition={!!products && products?.length > 0}
+          elseRender={<StickerNotice className='empty-notice'>PRODUCTS EMPTY</StickerNotice>}>
+          <Row className='products'>
+            {products?.map((product: Product, i: number) => (
+              <ProductCardAdmin key={i} product={product} />
+            ))}
+          </Row>
+        </If>
       </Container>
     </Div>
   );
@@ -46,6 +48,10 @@ export default AdminPage;
 const Div = styled.div`
   .products {
     padding: 30px 0;
+  }
+
+  .empty-notice {
+    height: 60vh;
   }
 
   @media ${device.tablet} {

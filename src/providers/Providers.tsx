@@ -1,13 +1,16 @@
-import React, { useReducer } from 'react';
-import { globalReducer } from '../reducers/global.reducer';
-import { initialGlobalState, GlobalProvider } from './providers';
+import React, { useEffect } from 'react';
+import { ToastProvider } from 'react-toast-notifications';
+import { ApolloCustomProvider } from './ApolloCustom.provider';
+import { GlobalStateProvider } from './GlobalState.provider';
 
 export interface ProvidersProps {}
 
 export const Providers: React.FC<ProvidersProps> = ({ children }) => {
-  const [globalState, globalDispatch] = useReducer(globalReducer, initialGlobalState);
-
-  console.log('global state: ', globalState);
-
-  return <GlobalProvider value={{ globalState, globalDispatch }}>{children}</GlobalProvider>;
+  return (
+    <ToastProvider placement='top-center' autoDismiss={true}>
+      <GlobalStateProvider>
+        <ApolloCustomProvider>{children}</ApolloCustomProvider>
+      </GlobalStateProvider>
+    </ToastProvider>
+  );
 };

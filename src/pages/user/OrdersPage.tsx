@@ -5,8 +5,10 @@ import { device } from '../../theme';
 
 import { PageHeader, PageTitle, PageHeaderButtons } from '../../components/global/PageHeader';
 import { Button } from '../../components/common/Button';
-import { Container } from '../../components/common/Layout';
+import { Container, Section } from '../../components/common/Layout';
 import OrderItem from '../../components/user/orders list/OrderItem';
+import If from '../../components/common/If';
+import { StickerNotice } from '../../components/common/StickerNotice';
 
 export interface OrdersPageProps {}
 
@@ -22,27 +24,39 @@ const OrdersPage: React.FC<OrdersPageProps> = () => {
         </PageHeaderButtons>
       </PageHeader>
 
-      <Container>
-        <Div>
-          {orders.map((order, index) => (
-            <OrderItem order={order} removeOrder={removeOrder} key={index} />
-          ))}
-        </Div>
-      </Container>
+      <OrdersSection>
+        <Container>
+          <If
+            condition={orders.length > 0}
+            elseRender={<StickerNotice className='empty-notice'>ORDERS EMPTY</StickerNotice>}>
+            <div className='orders-list'>
+              {orders.map((order, index) => (
+                <OrderItem order={order} removeOrder={removeOrder} key={index} />
+              ))}
+            </div>
+          </If>
+        </Container>
+      </OrdersSection>
     </>
   );
 };
 
 export default OrdersPage;
 
-const Div = styled.div`
-  width: 100%;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
-  grid-gap: 0.5em;
-  justify-content: center;
+const OrdersSection = styled(Section)`
+  .orders-list {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-gap: 0.5em;
+    justify-content: center;
 
-  @media ${device.narrow} {
-    padding: 0 3%;
+    @media ${device.narrow} {
+      padding: 0 3%;
+    }
+  }
+
+  .empty-notice {
+    height: 60vh;
   }
 `;

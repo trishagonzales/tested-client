@@ -9,8 +9,8 @@ export interface OrderStatusProps extends BaseProps {
 
 export const OrderStatus: React.FC<OrderStatusProps> = ({ className, status }) => {
   return (
-    <Div status={status}>
-      <Row className={className} justifyContent='space-evenly'>
+    <Div className={className} status={status}>
+      <Row justifyContent='space-evenly'>
         <div className={`status-item ${status === 'CONFIRMED' && 'active'}`}>
           <i className='fas fa-receipt' />
           <div>Confirmed</div>

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useToasts } from 'react-toast-notifications';
+import { useGlobal } from '../../../hooks/common/useGlobal';
 import { useCart } from '../../../hooks/user/useCart';
 import { Button, ButtonProps } from '../../common/Button';
 
@@ -9,6 +11,10 @@ export interface AddToCartButtonProps extends ButtonProps {
 
 const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productID, quantity, ...btnProps }) => {
   const { addItem, deleteItem, isAdded } = useCart(productID);
+  const {
+    globalState: { user },
+  } = useGlobal();
+  const { addToast } = useToasts();
 
   return (
     <>
@@ -18,7 +24,11 @@ const AddToCartButton: React.FC<AddToCartButtonProps> = ({ productID, quantity, 
           {''} ADDED TO CART
         </Button>
       ) : (
-        <Button onClick={() => addItem(quantity)} {...btnProps}>
+        <Button
+          onClick={() =>
+            user ? addItem(quantity) : addToast('Login required', { appearance: 'error' })
+          }
+          {...btnProps}>
           <i className='fas fa-cart-plus'></i>
           {''} ADD TO CART
         </Button>

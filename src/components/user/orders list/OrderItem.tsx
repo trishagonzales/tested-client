@@ -24,8 +24,8 @@ const OrderItem: React.FC<OrderItemProps> = ({ className, order, removeOrder }) 
 
       {order.items.map((item, index) =>
         item.product ? (
-          <Link to={'/product/' + item.product.id}>
-            <Row className='product' key={index}>
+          <Link to={'/product/' + item.product.id} key={index}>
+            <Row className='product'>
               <ProductThumbnail className='thumbnail' src={item.product?.thumbnail} size='70px' />
 
               <div className='product-info'>
@@ -44,11 +44,11 @@ const OrderItem: React.FC<OrderItemProps> = ({ className, order, removeOrder }) 
         )
       )}
 
-      <hr />
+      {/* <hr /> */}
 
-      <OrderStatus status={order.status} />
+      <OrderStatus status={order.status} className='order-status' />
 
-      <hr />
+      {/* <hr /> */}
 
       <Row className='total-price' justifyContent='space-between'>
         {order.status === 'COMPLETED' && !order.isReviewed && (
@@ -76,7 +76,10 @@ const Div = styled.div`
   border-radius: 5px;
 
   .product {
-    padding: 0.5em;
+    padding: 1em;
+    :hover {
+      background: #f2f2f2;
+    }
 
     .thumbnail {
       margin-right: 1.2em;
@@ -103,8 +106,12 @@ const Div = styled.div`
     margin: 1em 0.7em;
   }
 
+  .order-status {
+    margin: 2em 0;
+  }
+
   .total-price {
-    margin-top: 1em;
+    margin-top: 1.5em;
     button {
       font-size: 12px;
     }

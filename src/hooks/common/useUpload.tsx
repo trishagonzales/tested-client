@@ -4,7 +4,6 @@ import styled from 'styled-components';
 import _ from 'lodash';
 import { useMutation, gql } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
-import { displayErrors } from './useApiError';
 
 const UPLOAD_PRODUCT_IMAGES = gql`
   mutation($id: String!, $files: [Upload!]!) {
@@ -94,9 +93,6 @@ export function useUpload({ type, initialFile, initialFiles = [] }: UseUploadOpt
         addToast('Profile saved', { appearance: 'success' });
       }
     },
-    onError: err => {
-      displayErrors(addToast, err);
-    },
   });
 
   const [deleteAPI] = useMutation(type === 'product' ? DELETE_PRODUCT_IMAGES : DELETE_AVATAR, {
@@ -105,9 +101,6 @@ export function useUpload({ type, initialFile, initialFiles = [] }: UseUploadOpt
         history.replace('/profile');
         addToast('Profile saved', { appearance: 'success' });
       }
-    },
-    onError: err => {
-      displayErrors(addToast, err);
     },
   });
 

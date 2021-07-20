@@ -1,5 +1,4 @@
 import { gql, useLazyQuery, useMutation } from '@apollo/client';
-import { displayErrors } from '../common/useApiError';
 import { useToasts } from 'react-toast-notifications';
 import { useCallback } from 'react';
 import { useHistory } from 'react-router-dom';
@@ -52,26 +51,18 @@ export function useAccountSettings() {
 
   //  API CALLS
 
-  const [updateUsernameAPI] = useMutation(UPDATE_USERNAME, {
-    onError: err => displayErrors(addToast, err),
-  });
+  const [updateUsernameAPI] = useMutation(UPDATE_USERNAME, {});
 
-  const [updateEmailAPI] = useMutation(UPDATE_EMAIL, {
-    onError: err => displayErrors(addToast, err),
-  });
+  const [updateEmailAPI] = useMutation(UPDATE_EMAIL, {});
 
-  const [updatePasswordAPI] = useMutation(UPDATE_PASSWORD, {
-    onError: err => displayErrors(addToast, err),
-  });
+  const [updatePasswordAPI] = useMutation(UPDATE_PASSWORD, {});
 
   const [forgotPasswordAPI] = useLazyQuery<{ forgotPassword: boolean }>(FORGOT_PASSWORD, {
     onCompleted: data => data.forgotPassword && addToast('Reset link sent', { appearance: 'info' }),
-    onError: err => displayErrors(addToast, err),
   });
 
   const [resetPasswordAPI] = useMutation<{ resetPassword: boolean }>(RESET_PASSWORD, {
     onCompleted: data => data.resetPassword && history.replace('/password/reset/complete'),
-    onError: err => displayErrors(addToast, err),
   });
 
   const [sendEmailConfirmationLink] = useLazyQuery<{ sendEmailConfirmationLink: boolean }>(
@@ -80,14 +71,12 @@ export function useAccountSettings() {
       onCompleted: data =>
         data.sendEmailConfirmationLink &&
         addToast('Confirmation link sent', { appearance: 'info' }),
-      onError: err => displayErrors(addToast, err),
     }
   );
 
   const [confirmEmailAPI] = useMutation<{ confirmEmail: boolean }>(CONFIRM_EMAIL, {
     onCompleted: data =>
       data.confirmEmail && addToast('Successfully confirmed email', { appearance: 'success' }),
-    onError: err => displayErrors(addToast, err),
   });
 
   //  FUNCTION TRIGGERS

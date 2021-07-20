@@ -9,7 +9,7 @@ export interface GlobalState {
   orders: OrderType[];
 }
 
-export interface GlobalAction {
+export interface GlobalStateAction {
   type: 'LOGIN' | 'LOGOUT' | 'IS_ADMIN' | 'UPDATE_WISHLIST' | 'UPDATE_CART' | 'UPDATE_ORDERS';
   user?: User;
   isAdmin?: boolean;
@@ -18,7 +18,7 @@ export interface GlobalAction {
   orders?: OrderType[];
 }
 
-export function globalReducer(state: GlobalState, action: GlobalAction) {
+export function globalStateReducer(state: GlobalState, action: GlobalStateAction) {
   const { type, user, isAdmin, wishlist, cart, orders } = action;
 
   switch (type) {

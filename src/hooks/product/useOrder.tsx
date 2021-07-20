@@ -4,7 +4,6 @@ import { gql, useMutation, useLazyQuery } from '@apollo/client';
 import { useToasts } from 'react-toast-notifications';
 
 import { useGlobal } from '../common/useGlobal';
-import { displayErrors } from '../common/useApiError';
 import { OrderData } from '../../api/fragments/User.fragment';
 import { OrderType } from '../../types/User.types';
 
@@ -26,9 +25,9 @@ const CREATE_ORDER = gql`
   ${OrderData}
 `;
 
-const REMOVE_ORDER = gql`
+const DELETE_ORDER = gql`
   mutation($id: String!) {
-    removeOrder(id: $id)
+    deleteOrder(id: $id)
   }
 `;
 
@@ -50,7 +49,6 @@ export function useOrder() {
 
   const [getOrderItems] = useLazyQuery<{ orders: OrderType[] }>(GET_ORDERS, {
     onCompleted: data => globalDispatch({ type: 'UPDATE_ORDERS', orders: data.orders }),
-    onError: err => displayErrors(addToast, err),
   });
 
   const [createOrderAPI] = useMutation(CREATE_ORDER, {
@@ -60,17 +58,20 @@ export function useOrder() {
       getOrderItems();
       history.replace('/order-completed');
     },
-    onError: err => displayErrors(addToast, err),
   });
 
-  const [removeOrderAPI] = useMutation(REMOVE_ORDER, {
-    onCompleted: () => getOrderItems(),
-    onError: err => displayErrors(addToast, err),
+  const [removeOrderAPI] = useMutation(DELETE_ORDER, {
+    onCompleted: () => {
+      getOrderItems();
+      history.go(0);
+    },
   });
 
   const [clearOrders] = useMutation(CLEAR_ORDERS, {
-    onCompleted: () => getOrderItems(),
-    onError: err => displayErrors(addToast, err),
+    onCompleted: () => {
+      getOrderItems();
+      history.go(0);
+    },
   });
 
   //  CALLBACKS

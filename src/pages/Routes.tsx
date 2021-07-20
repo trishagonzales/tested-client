@@ -3,14 +3,18 @@ import { RouteProps, Route, Switch } from 'react-router-dom';
 import ErrorBoundary from '../components/common/ErrorBoundary';
 import { lazy } from '../utils/dynamicImports.util';
 
+//  Global routes
 const HomePage = lazy(() => import('./HomePage'));
 const LoginSignupPage = lazy(() => import('./LoginSignupPage'));
 const ProductListPage = lazy(() => import('./product/ProductListPage'));
 const ProductPage = lazy(() => import('./product/ProductPage'));
+
+//  Logout routes
 const ForgotPasswordPage = lazy(() => import('./user/ForgotPasswordPage'));
 const ResetPasswordPage = lazy(() => import('./user/ResetPasswordPage'));
 const ResetPasswordCompletePage = lazy(() => import('./user/ResetPasswordComplete'));
 
+//  User routes
 const BuyPage = lazy(() => import('./product/BuyPage'));
 const WishlistPage = lazy(() => import('./product/WishlistPage'));
 const AccountPage = lazy(() => import('./user/AccountPage'));
@@ -18,19 +22,20 @@ const LeaveReviewPage = lazy(() => import('./user/LeaveReviewPage'));
 const OrdersPage = lazy(() => import('./user/OrdersPage'));
 const ConfirmEmailPage = lazy(() => import('./user/ConfirmEmailPage'));
 
+//  Admin routes
 const AdminPage = lazy(() => import('./AdminPage'));
 const AddProduct = lazy(() => import('../components/admin/AddProduct'));
 const EditProduct = lazy(() => import('../components/admin/EditProduct'));
 
 export interface RoutesProps {
   routes: RouteProps[];
-  condition: boolean;
+  renderIf: boolean;
 }
 
-export const Routes: React.FC<RoutesProps> = ({ condition, routes }) => {
+export const Routes: React.FC<RoutesProps> = ({ renderIf, routes }) => {
   return (
     <ErrorBoundary>
-      <Switch>{condition ? routes.map((route, i) => <Route key={i} {...route} />) : null}</Switch>
+      <Switch>{routes.map((route, i) => (renderIf ? <Route key={i} {...route} /> : null))}</Switch>
     </ErrorBoundary>
   );
 };
@@ -57,7 +62,6 @@ export const userRoutes = [
 export const adminRoutes = [
   { path: '/admin/product/add', component: AddProduct },
   { path: '/admin/product/edit/:id', component: EditProduct },
-  { path: '/admin/settings', component: AddProduct },
   { exact: true, path: '/admin', component: AdminPage },
 ];
 

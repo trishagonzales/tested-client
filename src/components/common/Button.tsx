@@ -32,10 +32,11 @@ export const Button = styled.button<ButtonProps>`
   }};
   border-radius: 5px;
   color: ${p => (p.primary ? 'white' : 'var(--main)')};
+  opacity: ${p => p.disabled && '0.3'};
   text-transform: uppercase;
   font-size: ${p => (p.fontsize ? p.fontsize : '14px')};
   font-weight: bold;
-  cursor: pointer;
+  ${p => !p.disabled && 'cursor: pointer'};
   :hover {
     backdrop-filter: brightness(95%);
   }

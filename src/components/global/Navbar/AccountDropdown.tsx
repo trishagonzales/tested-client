@@ -22,9 +22,6 @@ export const AccountDropdown: React.FC<AccountDropdownProps> = () => {
         <DropdownContent className='dropdown-content' align='right'>
           {user ? (
             <ul>
-              <Link onClick={close} to='/notifications'>
-                Notifications
-              </Link>
               <Link onClick={close} to='/wishlists'>
                 Wishlists
               </Link>

@@ -11,9 +11,7 @@ const Cart = lazy(() => import('../../components/product/buy/Cart'));
 const Checkout = lazy(() => import('../../components/product/buy/Checkout'));
 const OrderCompleted = lazy(() => import('../../components/product/buy/OrderCompleted'));
 
-export interface OrderPageProps {}
-
-const BuyPage: React.FC<OrderPageProps> = () => {
+const BuyPage: React.FC = () => {
   const { TabContainer, TabHeader, Tab, TabBody, TabContent } = useTabs({
     isCurrentPathTheTab: true,
     disableTabClick: true,

@@ -5,7 +5,7 @@ export interface IfProps {
   elseRender?: any;
 }
 
-const If: React.FC<IfProps> = ({ children, condition, elseRender }) => {
+const If: React.FC<IfProps> = ({ children, condition, elseRender = null }) => {
   return <>{condition ? children : elseRender}</>;
 };
 
