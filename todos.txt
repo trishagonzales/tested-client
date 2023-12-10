@@ -1,0 +1,44 @@
+UI
+1. Login/Signup
+
+2. Products
+    Product page *
+    Product page mobile
+    Product card *
+    Review/Comment
+
+3. Admin Page
+    Products page
+    Add product *
+    Edit product page
+
+4. User
+    Cart *
+    Wishlist Page *
+    Account *
+    Account mobile *
+
+5. Portal *
+
+Functionality
+1. Auth
+    Login
+    Signup
+
+2. Order
+    Cart *
+    Checkout *
+    Place Order *
+    Leave Review
+
+3. Account
+    Profile
+    Settings
+    
+4. Admin
+    Add product *
+    Edit product
+
+
+Fix
+1. upload product images
